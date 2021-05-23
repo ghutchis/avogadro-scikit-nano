@@ -11,7 +11,7 @@ import json
 import sys
 import os
 from random import randrange
-from sknano.generators import SWNTGenerator
+from sknano.generators import MWNTGenerator
 
 # Some globals:
 debug = True
@@ -50,7 +50,7 @@ def generate(opts):
     m = int(opts['min'])
     n = int(opts['n'])
 
-    swnt = MWNTGenerator(Nwalls=n, min_wall_diameter=m Lz=l)
+    swnt = MWNTGenerator(Nwalls=n, min_wall_diameter=m, Lz=l)
     # need a better random temporary name
     name = 'temp{}.xyz'.format(randrange(32768))
     swnt.save(fname=name)

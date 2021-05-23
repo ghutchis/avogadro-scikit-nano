@@ -7,7 +7,6 @@
   "type": "commands",
   "commands": [
     { "name": "SWNT", "command": "swnt.py" },
-    { "name": "MWNT", "command": "mwnt.py" },
-    { "name": "Graphene Nanoribbon", "command": "graphene.py" }
+    { "name": "MWNT", "command": "mwnt.py" }
   ]
 }
