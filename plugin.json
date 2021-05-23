@@ -1,0 +1,13 @@
+{
+  "author": "Geoffrey Hutchison",
+  "version": 1.0,
+  "url": "https://github.com/ghutchis/avogadro-scikit-nano",
+  "name": "avogadro-scikit-nano",
+  "description": "Generate carbon nanomaterial using scikit-nano",
+  "type": "commands",
+  "commands": [
+    { "name": "SWNT", "command": "swnt.py" },
+    { "name": "MWNT", "command": "mwnt.py" },
+    { "name": "Graphene Nanoribbon", "command": "graphene.py" }
+  ]
+}
