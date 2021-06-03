@@ -1,7 +1,6 @@
 """
 /******************************************************************************
   This source file is part of the Avogadro project.
-
   This source code is released under the New BSD License, (the "License").
 ******************************************************************************/
 """
@@ -10,7 +9,7 @@ import argparse
 import json
 import sys
 import os
-from random import randrange
+import tempfile
 from sknano.generators import MWNTGenerator
 
 # Some globals:
@@ -51,8 +50,11 @@ def generate(opts):
     n = int(opts['n'])
 
     swnt = MWNTGenerator(Nwalls=n, min_wall_diameter=m, Lz=l)
-    # need a better random temporary name
-    name = 'temp{}.xyz'.format(randrange(32768))
+
+    # secure tempfile name ending in ".xyz" in a writable tmpdir
+    fd, name = tempfile.mkstemp(".xyz")
+    os.close(fd) # don't use the filehandle
+
     swnt.save(fname=name)
 
     with open(name) as f:
@@ -77,7 +79,7 @@ def runCommand():
     return result
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser('Single Walled Nanotube')
+    parser = argparse.ArgumentParser('Multi-Walled Nanotube')
     parser.add_argument('--debug', action='store_true')
     parser.add_argument('--print-options', action='store_true')
     parser.add_argument('--run-command', action='store_true')

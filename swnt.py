@@ -1,7 +1,6 @@
 """
 /******************************************************************************
   This source file is part of the Avogadro project.
-
   This source code is released under the New BSD License, (the "License").
 ******************************************************************************/
 """
@@ -10,12 +9,9 @@ import argparse
 import json
 import sys
 import os
-from random import randrange
+import tempfile
+
 from sknano.generators import SWNTGenerator
-
-# Some globals:
-debug = True
-
 
 def getOptions():
     userOptions = {}
@@ -46,8 +42,10 @@ def generate(opts):
     n = int(opts['n'])
 
     swnt = SWNTGenerator((m, n), Lz=l)
-    # need a better random temporary name
-    name = 'temp{}.xyz'.format(randrange(32768))
+    # secure tempfile name ending in ".xyz" in a writable tmpdir
+    fd, name = tempfile.mkstemp(".xyz")
+    os.close(fd) # don't use the filehandle
+
     swnt.save(fname=name)
 
     with open(name) as f:
